@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a223623e-6eb6-4199-838f-e096496c7f77" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/resources/config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/resources/orders.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/app/IntegrationService.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/app/PublishLog2Kafka.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/app/QueryOrdersFromIceberg.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/config/Config.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/data/bean/Order.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/data/storage/IcebergTableManager.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/processing/batch/OrderStaticsStorageProcessor.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/untils/KafkaUtil.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/untils/PropertiesUtil.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigdata/src/test/java/com/zetaris/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Scala Object" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2oxWZqZoBGTdaN0WhFDPDeDKl2y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "jdk.selected.JAVA_MODULE": "11.0.3",
+    "last_opened_file_path": "/Users/jonny/IdeaProjects/zetaris-bigdata/bigdata/src/main/scala/com/zetaris/app",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/app" />
+      <recent name="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/processing/batch" />
+      <recent name="$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/data/bean" />
+      <recent name="$PROJECT_DIR$/bigdata/src/main/resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zetaris.data.bean" />
+      <recent name="com.zetaris.untils" />
+      <recent name="com.zetaris.app" />
+      <recent name="com.zetaris.config" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.QueryOrdersFromIceberg">
+    <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
+      <option name="appName" />
+      <option name="appServicePlanName" />
+      <option name="appServicePlanResourceGroup" />
+      <option name="appSettingsKey" value="fca806e4-1ab5-402e-8180-39ddb7d7c6c0" />
+      <option name="artifact" />
+      <option name="debugOptions" />
+      <option name="deployment" />
+      <option name="deploymentStagingDirectoryPath" />
+      <option name="funcPath" />
+      <option name="functionHostArguments" />
+      <option name="hostJsonPath" />
+      <option name="insightsName" />
+      <option name="instrumentationKey" />
+      <option name="javaVersion" />
+      <option name="localSettingsJsonPath" />
+      <option name="moduleName" />
+      <option name="os" />
+      <option name="pricingTier" />
+      <option name="providerMap">
+        <map />
+      </option>
+      <option name="region" />
+      <option name="resourceGroup" />
+      <option name="stagingFolder" />
+      <option name="subscription" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntegrationService" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.zetaris.app.IntegrationService" />
+      <module name="bigdata" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zetaris.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderLogPublisher" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.zetaris.app.OrderLogPublisher" />
+      <module name="bigdata" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zetaris.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderStaticsStorageProcessor" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.zetaris.processing.batch.OrderStaticsStorageProcessor" />
+      <module name="bigdata" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zetaris.processing.batch.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PublishLog2Kafka" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.zetaris.app.PublishLog2Kafka" />
+      <module name="bigdata" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zetaris.sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QueryOrdersFromIceberg" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.zetaris.app.QueryOrdersFromIceberg" />
+      <module name="bigdata" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zetaris.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.IntegrationService" />
+      <item itemvalue="Application.OrderLogPublisher" />
+      <item itemvalue="Application.QueryOrdersFromIceberg" />
+      <item itemvalue="Application.OrderStaticsStorageProcessor" />
+      <item itemvalue="Application.PublishLog2Kafka" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.QueryOrdersFromIceberg" />
+        <item itemvalue="Application.PublishLog2Kafka" />
+        <item itemvalue="Application.IntegrationService" />
+        <item itemvalue="Application.OrderLogPublisher" />
+        <item itemvalue="Application.OrderStaticsStorageProcessor" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a223623e-6eb6-4199-838f-e096496c7f77" name="Changes" comment="" />
+      <created>1731811768269</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731811768269</updated>
+      <workItem from="1731811771395" duration="10665000" />
+      <workItem from="1731828401585" duration="3957000" />
+      <workItem from="1731853900452" duration="96000" />
+      <workItem from="1731893396246" duration="14121000" />
+      <workItem from="1731908588844" duration="25491000" />
+      <workItem from="1731950645215" duration="1256000" />
+      <workItem from="1731951935832" duration="1413000" />
+      <workItem from="1731978448683" duration="7238000" />
+      <workItem from="1731988467378" duration="14729000" />
+      <workItem from="1732068677504" duration="7875000" />
+      <workItem from="1732078001621" duration="2344000" />
+      <workItem from="1732080520364" duration="590000" />
+      <workItem from="1732084142350" duration="15056000" />
+      <workItem from="1732116807957" duration="9237000" />
+      <workItem from="1732149450573" duration="5161000" />
+      <workItem from="1732156490308" duration="313000" />
+      <workItem from="1732156939443" duration="10622000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="redis.clients.jedis.exceptions.JedisConnectionException" package="redis.clients.jedis.exceptions" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/bigdata/src/main/scala/com/zetaris/processing/batch/OrderStaticsStorageProcessor.scala</url>
+          <line>151</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/zetaris_bigdata$OdsOrderLogApp.ic" NAME="OdsOrderLogApp Coverage Results" MODIFIED="1732077726854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.zetaris.sample.*</FILTER>
+    </SUITE>
+  </component>
+</project>

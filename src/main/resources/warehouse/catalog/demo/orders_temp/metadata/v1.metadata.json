@@ -1,0 +1,179 @@
+{
+  "format-version" : 1,
+  "table-uuid" : "40db1c2c-aa92-4e0e-9974-61af3a89f6e5",
+  "location" : "src/main/resources/warehouse/catalog/demo/orders_temp",
+  "last-updated-ms" : 1732167097939,
+  "last-column-id" : 10,
+  "schema" : {
+    "type" : "struct",
+    "schema-id" : 0,
+    "fields" : [ {
+      "id" : 1,
+      "name" : "order_id",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Unique identifier for the order"
+    }, {
+      "id" : 2,
+      "name" : "user_id",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Unique identifier for the user"
+    }, {
+      "id" : 3,
+      "name" : "product_id",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Unique identifier for the product"
+    }, {
+      "id" : 4,
+      "name" : "product_name",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Name of the product"
+    }, {
+      "id" : 5,
+      "name" : "category",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Category of the product"
+    }, {
+      "id" : 6,
+      "name" : "price",
+      "required" : false,
+      "type" : "double",
+      "doc" : "Price of a single unit"
+    }, {
+      "id" : 7,
+      "name" : "quantity",
+      "required" : false,
+      "type" : "int",
+      "doc" : "Quantity of the product ordered"
+    }, {
+      "id" : 8,
+      "name" : "order_date",
+      "required" : false,
+      "type" : "date",
+      "doc" : "Date when the order was placed"
+    }, {
+      "id" : 9,
+      "name" : "order_status",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Current status of the order"
+    }, {
+      "id" : 10,
+      "name" : "delivery_date",
+      "required" : false,
+      "type" : "date",
+      "doc" : "Date when the order was delivered"
+    } ]
+  },
+  "current-schema-id" : 0,
+  "schemas" : [ {
+    "type" : "struct",
+    "schema-id" : 0,
+    "fields" : [ {
+      "id" : 1,
+      "name" : "order_id",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Unique identifier for the order"
+    }, {
+      "id" : 2,
+      "name" : "user_id",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Unique identifier for the user"
+    }, {
+      "id" : 3,
+      "name" : "product_id",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Unique identifier for the product"
+    }, {
+      "id" : 4,
+      "name" : "product_name",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Name of the product"
+    }, {
+      "id" : 5,
+      "name" : "category",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Category of the product"
+    }, {
+      "id" : 6,
+      "name" : "price",
+      "required" : false,
+      "type" : "double",
+      "doc" : "Price of a single unit"
+    }, {
+      "id" : 7,
+      "name" : "quantity",
+      "required" : false,
+      "type" : "int",
+      "doc" : "Quantity of the product ordered"
+    }, {
+      "id" : 8,
+      "name" : "order_date",
+      "required" : false,
+      "type" : "date",
+      "doc" : "Date when the order was placed"
+    }, {
+      "id" : 9,
+      "name" : "order_status",
+      "required" : false,
+      "type" : "string",
+      "doc" : "Current status of the order"
+    }, {
+      "id" : 10,
+      "name" : "delivery_date",
+      "required" : false,
+      "type" : "date",
+      "doc" : "Date when the order was delivered"
+    } ]
+  } ],
+  "partition-spec" : [ {
+    "name" : "category",
+    "transform" : "identity",
+    "source-id" : 5,
+    "field-id" : 1000
+  }, {
+    "name" : "order_date",
+    "transform" : "identity",
+    "source-id" : 8,
+    "field-id" : 1001
+  } ],
+  "default-spec-id" : 0,
+  "partition-specs" : [ {
+    "spec-id" : 0,
+    "fields" : [ {
+      "name" : "category",
+      "transform" : "identity",
+      "source-id" : 5,
+      "field-id" : 1000
+    }, {
+      "name" : "order_date",
+      "transform" : "identity",
+      "source-id" : 8,
+      "field-id" : 1001
+    } ]
+  } ],
+  "last-partition-id" : 1001,
+  "default-sort-order-id" : 0,
+  "sort-orders" : [ {
+    "order-id" : 0,
+    "fields" : [ ]
+  } ],
+  "properties" : {
+    "owner" : "jonny"
+  },
+  "current-snapshot-id" : -1,
+  "refs" : { },
+  "snapshots" : [ ],
+  "statistics" : [ ],
+  "snapshot-log" : [ ],
+  "metadata-log" : [ ]
+}
