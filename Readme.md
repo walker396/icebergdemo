@@ -9,6 +9,7 @@ Order Data Source Testing
 Iceberg Data Query
 Usage
 Prerequisites
+Change the kafka url in the bigdata/src/main/resources/config.properties
 Running the Programs
 Build and Package
 Overview
