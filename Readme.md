@@ -43,8 +43,9 @@ Iceberg: A properly configured Iceberg table catalog.
 Install the project dependencies:
 
 bash
-Copy code
+```
 mvn clean install
+```
 Running the Programs
 Use the following Maven commands to run each program:
 
@@ -52,22 +53,25 @@ Integration Service
 To start the Integration Service:
 
 bash
-Copy code
+```
 mvn exec:java -Dexec.mainClass="com.zetaris.app.IntegrationService"
+```
 Order Data Source Testing
 To run the order data source testing program:
 
 bash
-Copy code
+```
 mvn exec:java -Dexec.mainClass="com.zetaris.app.PublishLog2Kafka"
+```
 This will publish sample order logs to a Kafka topic for testing the pipeline.
 
 Iceberg Data Query
 To query data from the Apache Iceberg table:
 
 bash
-Copy code
+```
 mvn exec:java -Dexec.mainClass="com.zetaris.app.QueryOrdersFromIceberg"
+```
 This program retrieves order data from the Iceberg orders table, sorting and filtering as defined in the implementation.
 
 Build and Package
@@ -75,5 +79,6 @@ To package the project into a runnable JAR:
 
 bash
 Copy code
-mvn package
+```
 The resulting JAR file will be located in the target/ directory.
+```
