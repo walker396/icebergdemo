@@ -1,4 +1,4 @@
-Zetaris Big Data Services
+Big Data Services
 This repository contains programs and services for integrating, testing, and querying data using Apache Iceberg, Kafka, and Spark.
 
 Table of Contents
