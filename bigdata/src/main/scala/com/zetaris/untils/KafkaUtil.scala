@@ -2,6 +2,7 @@ package com.zetaris.utils
 
 import com.zetaris.config.Config
 import com.zetaris.untils.PropertiesUtil
+import org.apache.kafka.clients.admin.{AdminClient, AdminClientConfig, NewTopic}
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord}
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord, RecordMetadata}
 import org.apache.kafka.common.TopicPartition
@@ -11,6 +12,7 @@ import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, Loca
 
 import java.util.Properties
 import scala.collection.mutable
+import scala.jdk.CollectionConverters.asJavaCollectionConverter
 
 /**
  * Kafka utility class for production and consumption
@@ -20,6 +22,8 @@ object KafkaUtil {
    * Kafka producer object
    */
   private val producer: KafkaProducer[String, String] = createProducer()
+
+  private val adminClient: AdminClient = createAdmin()
   /**
    * Consumer configuration
    */
@@ -50,6 +54,12 @@ object KafkaUtil {
     val kafkaDStream: InputDStream[ConsumerRecord[String, String]] = KafkaUtils.createDirectStream(ssc, LocationStrategies.PreferConsistent, ConsumerStrategies.Subscribe[String, String](Array(topic), consumerConfigs, offset))
     kafkaDStream
   }
+  def createAdmin(): AdminClient = {
+    val adminProperties = new Properties()
+    adminProperties.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, PropertiesUtil(Config.KAFKA_BOOTSTRAP_SERVER))
+    AdminClient.create(adminProperties)
+  }
+
   /**
    * Create Kafka producer object
    */
@@ -81,6 +91,15 @@ object KafkaUtil {
    */
   def send(topic: String, msg: String, key:String) = {
     producer.send(new ProducerRecord[String, String](topic, key, msg))
+  }
+
+  def deleteTopic(topic: String) = {
+    adminClient.deleteTopics(List(topic).asJavaCollection)
+  }
+
+  def createTopic(topic: String) = {
+    val newTopic = new NewTopic(topic, 1, 1.toShort)
+    adminClient.createTopics(List(newTopic).asJavaCollection)
   }
   /**
    * Close producer object

@@ -23,9 +23,17 @@ object PublishLog2Kafka {
     // parse the json
     val source = Source.fromFile(path)
     val jsonString = try source.mkString finally source.close()
+    val testOrders: Seq[String] = Seq(
+      """{"order_id":"ORD021","user_id":"USR001","product_id":"PRD001","product_name":"Wireless Mouse","category":"Electronics","price":25.99,"quantity":2,"order_date":"2024-11-15","order_status":"Completed","delivery_date":"2024-11-17"}""",
+      """{"order_id":"ORD022","user_id":"USR002","product_id":"PRD002","product_name":"Bluetooth Keyboard","category":"Electronics","price":45.99,"quantity":1,"order_date":"2024-11-15","order_status":"Completed","delivery_date":"2024-11-18"}"""
+    )
+    testOrders.foreach(order => {
+      println("*******" + order)
+      sendMessage("ODS_ORDER_LOG",order)
+    })
     val orders: Seq[Order] = JSON.parseArray(jsonString, classOf[Order]).asScala.toSeq
     val rand = new scala.util.Random
-    for(i <- 0 until 1000) {
+    for(i <- 0 until 3) {
       orders.foreach(order => {
         var newOrder = order.copy(order_id = rand.nextInt(1000).toString)
         sendMessage("ODS_ORDER_LOG", JSON.toJSONString(newOrder, new SerializeConfig(true)))
