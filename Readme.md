@@ -1,20 +1,18 @@
-Big Data Services
+# Big Data Services
 This repository contains programs and services for integrating, testing, and querying data using Apache Iceberg, Kafka, and Spark.
 
-Table of Contents
-Overview
-Programs
-Integration Service
-Order Data Source Testing
-Iceberg Data Query
-Usage
-Prerequisites
-Change the kafka url in the bigdata/src/main/resources/config.properties
-
-Running the Programs
+# Table of Contents
+* Overview
+* Programs
+* Integration Service
+* Order Data Source Testing
+* Iceberg Data Query
+* Usage
+* Prerequisites
+* Running the Programs
 
 Build and Package
-Overview
+## Overview
 This Maven-based project provides three main Scala programs:
 
 Integration Service: A service to handle data integration processes.
@@ -22,7 +20,7 @@ Order Data Source Testing: A test program for publishing order data logs to Kafk
 Iceberg Data Query: A query program to retrieve order data from an Apache Iceberg table.
 Each program is located in the bigdata/src/main/scala/com/zetaris/app/ directory.
 
-Programs
+## Programs
 1. Integration Service
    File: bigdata/src/main/scala/com/zetaris/app/IntegrationService.scala
    The Integration Service is the core service that manages data integration processes between various systems.
@@ -35,7 +33,7 @@ Programs
    File: bigdata/src/main/scala/com/zetaris/app/QueryOrdersFromIceberg.scala
    This program queries the orders table stored in Apache Iceberg, allowing you to validate and analyze the stored data.
 
-Usage
+## Usage
 Prerequisites
 Before running any program, ensure the following dependencies and services are properly configured:
 
@@ -86,7 +84,7 @@ Copy code
 The resulting JAR file will be located in the target/ directory.
 ```
 
-Setup and Run Integration tests
+# Setup and Run Integration tests
 1. Configure Kafka
    Ensure Kafka is running and accessible. Update src/main/resources/config.properties with the correct Kafka configuration:
 
@@ -117,11 +115,11 @@ mvn test
 Test Cases
 The test suite includes the following cases:
 
-Test Insert 2 New Orders: Validates that two new orders are successfully inserted into the Iceberg table.
-Test Insert One Duplicated Order: Ensures duplicate orders are not reinserted.
-Test Update the Status of One Order: Verifies that the order status is updated correctly.
-Test Event Sequential Consistency: Ensures the sequence of events in the Iceberg table is consistent.
-Test Data Integrity: Validates the integrity of specific fields in the inserted records.
+* Test Insert 2 New Orders: Validates that two new orders are successfully inserted into the Iceberg table.
+* Test Insert One Duplicated Order: Ensures duplicate orders are not reinserted.
+* Test Update the Status of One Order: Verifies that the order status is updated correctly.
+* Test Event Sequential Consistency: Ensures the sequence of events in the Iceberg table is consistent.
+* Test Data Integrity: Validates the integrity of specific fields in the inserted records.
 Logs will provide additional insights during execution.
 
 Key Files
