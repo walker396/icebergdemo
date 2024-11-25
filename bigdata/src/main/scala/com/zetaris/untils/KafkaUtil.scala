@@ -21,9 +21,8 @@ object KafkaUtil {
   /**
    * Kafka producer object
    */
-  private val producer: KafkaProducer[String, String] = createProducer()
-
-  private val adminClient: AdminClient = createAdmin()
+  @volatile private var producer: KafkaProducer[String, String] = _
+  @volatile private var adminClient: AdminClient = _
   /**
    * Consumer configuration
    */
@@ -38,6 +37,13 @@ object KafkaUtil {
     // Offset reset to latest
     ConsumerConfig.AUTO_OFFSET_RESET_CONFIG -> "latest"
   )
+
+  def configure(bootstrapServer: String): Unit = {
+    producer = createProducer(bootstrapServer)
+    adminClient = createAdmin(bootstrapServer)
+    consumerConfigs.update(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer)
+  }
+
   /**
    * Consuming based on Spark Streaming, obtaining Kafka DStream
    */
@@ -54,20 +60,20 @@ object KafkaUtil {
     val kafkaDStream: InputDStream[ConsumerRecord[String, String]] = KafkaUtils.createDirectStream(ssc, LocationStrategies.PreferConsistent, ConsumerStrategies.Subscribe[String, String](Array(topic), consumerConfigs, offset))
     kafkaDStream
   }
-  def createAdmin(): AdminClient = {
+  def createAdmin(bootstrapServer: String): AdminClient = {
     val adminProperties = new Properties()
-    adminProperties.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, PropertiesUtil(Config.KAFKA_BOOTSTRAP_SERVER))
+    adminProperties.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, Option(bootstrapServer).filter(_.nonEmpty).getOrElse(PropertiesUtil(Config.KAFKA_BOOTSTRAP_SERVER)))
     AdminClient.create(adminProperties)
   }
 
   /**
    * Create Kafka producer object
    */
-  def createProducer(): KafkaProducer[String, String] = {
+  def createProducer(bootstrapServer: String): KafkaProducer[String, String] = {
     // Producer configuration class
     val producerConfig = new Properties()
     // Kafka cluster address
-    producerConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, PropertiesUtil(Config.KAFKA_BOOTSTRAP_SERVER))
+    producerConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, Option(bootstrapServer).filter(_.nonEmpty).getOrElse(PropertiesUtil(Config.KAFKA_BOOTSTRAP_SERVER)))
     // Key-value serializer
     producerConfig.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer")
     producerConfig.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer")

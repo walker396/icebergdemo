@@ -1,30 +1,20 @@
 package com.zetaris.app
 
 import com.zetaris.config.Config
-import com.zetaris.untils.PropertiesUtil
+import com.zetaris.data.bean.StorageConfig
+import com.zetaris.untils.{IcebergUtil, PropertiesUtil}
 import org.apache.spark.sql.functions.{col, from_json}
-import org.apache.spark.sql.streaming.{StreamingQuery, Trigger}
-import org.apache.spark.sql.types.{StructField, _}
+import org.apache.spark.sql.streaming.StreamingQuery
+import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.slf4j.{Logger, LoggerFactory}
+import org.slf4j.LoggerFactory
 
 import scala.util.{Failure, Success, Try}
 
 object IntegrationService {
   private val logger = LoggerFactory.getLogger(this.getClass)
-  val config = parseConfig()
-  var spark: SparkSession = initializeSparkSession(config)
-  case class StorageConfig(
-                            kafkaConsumer: String = PropertiesUtil(Config.KAFKA_BOOTSTRAP_SERVER),
-                            kafkaTopic: String = "ODS_ORDER_LOG",
-                            startingOffsets: String = "latest",
-                            failOnDataLoss: Boolean = true,
-                            maxOffsetsPerTrigger: Int = 3000,
-                            warehousePath: String = "src/main/resources/warehouse/catalog/demo/",
-                            icebergPath: String = "demo.category_summary",
-                            checkpointPath: String = "src/main/resources/warehouse/catalog/demo/checkpoints/",
-                            triggerInterval: Long = 10 // seconds
-                          )
+  var spark: SparkSession = _
+
 
   private val orderSchema = StructType(List(
     StructField("order_id", StringType), // Unique identifier for the order
@@ -40,20 +30,22 @@ object IntegrationService {
   ))
 
   def main(args: Array[String]): Unit = {
-//    val config = parseConfig()
-
+    var kafkaUrl: String = ""
+    if (args != null && args.nonEmpty) {
+      kafkaUrl = args(0)
+    }
+    val config = parseConfig(kafkaUrl: String)
+    spark = IcebergUtil.initializeSparkSession(config)
     Try {
-
       ensureStorageTableExists(spark)
       ensureTempTableExists(spark)
       val streamingQuery = processOrderSummaryStream(spark, config)
-
       setupShutdownHook(streamingQuery, spark)
-//      if(args != null && args.nonEmpty && args(0) == "test"){
-//        streamingQuery.awaitTermination(60000L)
-//      }else{
+      if (args != null && args.nonEmpty && args(1) == "test") {
+        streamingQuery.awaitTermination(60000L)
+      } else {
         streamingQuery.awaitTermination()
-//      }
+      }
 
     } match {
       case Success(_) => logger.info("Order summary storage processing completed successfully")
@@ -63,25 +55,10 @@ object IntegrationService {
     }
   }
 
-  def parseConfig(): StorageConfig = {
-    StorageConfig()
-  }
-
-  def initializeSparkSession(config: StorageConfig): SparkSession = {
-    logger
-    SparkSession.builder()
-      .master("local[2]")
-      .appName("OrderStaticsStorage")
-      .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions")
-      .config("spark.sql.catalog.demo", "org.apache.iceberg.spark.SparkSessionCatalog")
-      .config("spark.sql.catalog.demo", "org.apache.iceberg.spark.SparkCatalog")
-      .config("spark.sql.catalog.demo.type", "hadoop")
-      .config("spark.sql.catalog.demo.warehouse", config.warehousePath)
-      .config("spark.sql.streaming.checkpointLocation", config.checkpointPath)
-      .config("spark.sql.streaming.minBatchesToRetain", "100")
-      .config("spark.sql.streaming.pollingDelay", "1000")
-      .config("spark.sql.streaming.maxBatchDuration", "10 seconds")
-      .getOrCreate()
+  def parseConfig(kafkaUrl: String): StorageConfig = {
+    StorageConfig(
+      kafkaConsumer = Option(kafkaUrl).filter(_.nonEmpty).getOrElse(PropertiesUtil(Config.KAFKA_BOOTSTRAP_SERVER))
+    )
   }
 
   def ensureStorageTableExists(spark: SparkSession): Unit = {
@@ -160,11 +137,11 @@ object IntegrationService {
     //    batchDF.createTempView("demo.order_updates")
     batchDF.write
       .format("iceberg")
-//      .option("path", "demo.orders_temp")
+      //      .option("path", "demo.orders_temp")
       .mode("overwrite")
       .saveAsTable("demo.orders_temp")
 
-//    println(s"Batch ID: $batchId, Record Count: ${batchDF.count()}")
+    //    println(s"Batch ID: $batchId, Record Count: ${batchDF.count()}")
     batchDF.sparkSession.sql("REFRESH TABLE demo.orders_temp")
     batchDF.sparkSession.sql("REFRESH TABLE demo.orders")
     //     execute the merge into operation
@@ -190,15 +167,10 @@ object IntegrationService {
     // create a temporary view to store input data
     val query = df.writeStream
       .foreachBatch { (batchDF: DataFrame, batchId: Long) =>
-//        // 打印每批次的数据，查看内容
-//        println("````````````````````")
-//        batchDF.show(false) // 只打印批次内容，不截断
-//        println("````````````````````")
-        // 调用你的 mergeToIceberg 逻辑进行数据存储
         mergeToIceberg(batchDF, batchId)
       }
       .outputMode("append")
-//      .trigger(Trigger.ProcessingTime("3 seconds"))
+      //      .trigger(Trigger.ProcessingTime("3 seconds"))
       .option("checkpointLocation", config.checkpointPath)
       .start()
     query
