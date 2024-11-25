@@ -85,3 +85,46 @@ Copy code
 ```
 The resulting JAR file will be located in the target/ directory.
 ```
+
+Setup and Run Integration tests
+1. Configure Kafka
+   Ensure Kafka is running and accessible. Update src/main/resources/config.properties with the correct Kafka configuration:
+
+properties
+Copy code
+kafka.bootstrap-servers = localhost:9092
+2. Build the Project
+   Build the project using Maven:
+
+bash
+```
+mvn clean install
+```
+3. Start the Integration Service
+   Run the IntegrationService located at src/main/java/com/zetaris/app/IntegrationService.java. This service initializes the Spark session, configures Kafka, and manages the Iceberg table.
+
+bash
+```
+mvn exec:java -Dexec.mainClass=com.zetaris.app.IntegrationService
+```
+4. Run the Test Suite
+   Execute the test suite using Maven:
+
+bash
+```
+mvn test
+```
+Test Cases
+The test suite includes the following cases:
+
+Test Insert 2 New Orders: Validates that two new orders are successfully inserted into the Iceberg table.
+Test Insert One Duplicated Order: Ensures duplicate orders are not reinserted.
+Test Update the Status of One Order: Verifies that the order status is updated correctly.
+Test Event Sequential Consistency: Ensures the sequence of events in the Iceberg table is consistent.
+Test Data Integrity: Validates the integrity of specific fields in the inserted records.
+Logs will provide additional insights during execution.
+
+Key Files
+Kafka Configuration: src/main/resources/config.properties
+Integration Service: src/main/java/com/zetaris/app/IntegrationService.java
+Test Suite: src/test/java/com/zetaris/app/IntegrationServiceTest.java
